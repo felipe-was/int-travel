@@ -1,3 +1,5 @@
+import Accommodation from "./accommodation";
+
 class City {
   #cityName!: string;
   #country!: string;
@@ -5,12 +7,14 @@ class City {
   #dateTo!: Date;
   #notes: string = "";
 
+
   constructor(
     cityName: unknown,
     country: unknown,
     dateFrom: unknown,
     dateTo: unknown,
     notes: unknown = "",
+    accommodation: unknown, 
   ) {
     this.setName(cityName);
     this.setCountry(country);
@@ -18,7 +22,17 @@ class City {
     this.setDateFrom(dateFrom);
     this.setDateTo(dateTo);
     this.setNotes(notes);
+    this.setAccomodation(accommodation);
   }
+
+  setAccomodation(accommodation: Accommodation){
+    this.setAccomodation = accommodation;
+  }
+
+ /*addAccommodation(accommodation: Accommodation){
+    this.#accommodation;
+  }*/
+
 
   getCountry(): string {
     return this.#country;
