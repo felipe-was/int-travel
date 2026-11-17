@@ -7,6 +7,8 @@ const citiesTbody = document.getElementById(
   "cities-tbody",
 ) as HTMLTableSectionElement | null;
 
+
+
 form?.addEventListener("submit", handleCityFormSubmit);
 
 function renderCities(): void {
@@ -47,18 +49,27 @@ function handleCityFormSubmit(e: SubmitEvent): void {
     .value;
   const notes = (document.getElementById("city-notes") as HTMLTextAreaElement)
     .value;
+  const alojamiento = document.getElementById("alojamiento") as HTMLInputElement;
+  const costoAlojamiento = document.getElementById("costoAlojamiento") as HTMLInputElement;
+
+
 
   const city = new City(
     name,
     country,
     new Date(dateFrom),
     new Date(dateTo),
-    notes,
+    notes, alojamiento,costoAlojamiento
   );
   if (!city) {
     showToast("Error", "No se pudo crear la ciudad", "danger");
     return;
   }
+  if (costoAlojamiento < 0 || costoAlojamiento === null) {
+    showToast("Error", "No se pudo crear la ciudad, valor del costo del alojamiento", "danger");
+    return;
+  }
+
   if (!saveCity(city)) return;
   showToast("Éxito", "Ciudad agregada", "success");
   renderCities();

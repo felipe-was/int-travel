@@ -22,9 +22,18 @@ describe("City name", () => {
     expect(() => city.setName("")).toThrow();
   });
 
-   test("should get correct country", () => {
+  test("should throw error if cost is smaller than 0", () => {
+    expect(() => city.setAccomodationCost(-3)).toThrow();
+  });
+
+  test("should throw error if cost is  null", () => {
+    expect(() => city.getAccomodation()).toThrow();
+  });
+
+  test("should get correct country", () => {
     expect(city.getCountry()).toBe("TestCountry");
   });
+  
 });
 
 describe("City country", () => {

@@ -6,7 +6,7 @@ class City {
   #dateFrom!: Date;
   #dateTo!: Date;
   #notes: string = "";
-
+  //#accommodation!: Accommodation;
 
   constructor(
     cityName: unknown,
@@ -15,6 +15,7 @@ class City {
     dateTo: unknown,
     notes: unknown = "",
     accommodation: unknown, 
+   // accomodationCost: unknown,
   ) {
     this.setName(cityName);
     this.setCountry(country);
@@ -25,8 +26,8 @@ class City {
     this.setAccomodation(accommodation);
   }
 
-  setAccomodation(accommodation: Accommodation){
-    this.setAccomodation = accommodation;
+  setAccomodation(accommodation: Accommodation): void {
+    this.#accommodation = accommodation;
   }
 
  /*addAccommodation(accommodation: Accommodation){
@@ -36,6 +37,16 @@ class City {
 
   getCountry(): string {
     return this.#country;
+  }
+
+
+  setAccomodationCost(accommodationCost: number): void {
+    if(accommodationCost < 0){
+      throw new Error("accomodation cost must be bigger than 0");
+    }
+    if (accommodationCost === null) {
+      throw new Error("Country can't be null");
+    }
   }
 
   setCountry(country: unknown): void {
